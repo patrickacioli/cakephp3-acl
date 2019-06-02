@@ -1,36 +1,51 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Product $product
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $product->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $product->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Products'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Transactions'), ['controller' => 'Transactions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Transaction'), ['controller' => 'Transactions', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="products form large-9 medium-8 columns content">
-    <?= $this->Form->create($product) ?>
-    <fieldset>
-        <legend><?= __('Edit Product') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('quant');
-            echo $this->Form->control('un');
-            echo $this->Form->control('category_id', ['options' => $categories]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div class="justify-content-md-center">
+<div class="col-md-6">
+<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+  <div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title">
+          Cadastrar novo
+        </h3>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+        <?php echo $this->Form->create($product, ["class" => "kt-form"]); ?>
+				<div class="kt-portlet__body">
+					<div class="form-group">
+						<label>Descrição</label>
+						<?php echo $this->Form->control("name", ["class" => "form-control", "label" => false, "placeholder"=> "Descrição do produto"]); ?>
+					</div>
+
+          <div class="form-group">
+            <label>Quantidade inicial</label>
+            <?php echo $this->Form->control("quant", ["class" => "form-control", "label" => false, "placeholder"=> "Quantidade inicial do produto"]); ?>
+          </div>
+
+          <div class="form-group">
+            <label>Unidade de apresentação</label>
+            <?php echo $this->Form->control("un", ["class" => "form-control", "label" => false, "placeholder"=> "Quantidade inicial do produto"]); ?>
+          </div>
+
+          <div class="form-group">
+            <label>Categoria</label>
+            <?php echo $this->Form->control("category_id", ["class" => "form-control", "label" => false, "placeholder"=> "Categoria"]); ?>
+          </div>
+
+				</div>
+				<div class="kt-portlet__foot">
+					<div class="kt-form__actions">
+						<button type="submit" class="btn btn-primary">Salvar edição</button>
+            <a href="../" style="text-decoration:none;">
+						<button class="btn btn-danger">
+                Voltar
+            </button>
+            </a>
+					</div>
+				</div>
+			</form>
+    </div>
+  </div>
+</div>
+</div>
 </div>

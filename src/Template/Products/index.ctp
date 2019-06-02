@@ -64,7 +64,7 @@
     <div class="kt-portlet__body">
 
       <!--begin: Datatable -->
-      <table class="table table-striped- table-bordered table-hover" id="kt_table_1">
+      <table class="table table-striped- table-bordered table-hover">
         <thead>
           <tr>
             <th>#</th>
@@ -76,13 +76,19 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($products as $product): ?>
-            <td><?php echo $product->id; ?></td>
-            <td><?php echo $product->name; ?></td>
-            <td><?php echo $product->quant; ?></td>
-            <td><?php echo $product->un; ?></td>
-            <td><?php echo $product->category->name; ?></td>
-            <td><a href="<?php echo $this->request->webroot; ?>products/edit/<?php echo $product->id; ?>">Editar</a></td>
+          <?php foreach ($query as $product): ?>
+            <tr>
+              <td><?php echo $product->id; ?></td>
+              <td><?php echo $product->name; ?></td>
+              <td><?php echo $product->quant; ?></td>
+              <td><?php echo $product->un; ?></td>
+              <td><?php echo $product->category->name; ?></td>
+              <td>
+                <a href="<?php echo $this->request->webroot; ?>products/edit/<?php echo $product->id; ?>">
+                  <button type="button" class="btn btn-sm btn-brand"><i class="fa fa-edit"></i></button>
+                </a>
+              </td>
+            </tr>
           <?php endforeach; ?>
         </tbody>
       </table>

@@ -204,7 +204,7 @@
         										</div>
         										<div class="kt-user-card__name">
         											<?php echo $this->request->session()->read('Auth.User.username'); ?>
-        										</div>        									
+        										</div>
         									</div>
 
         									<!--end: Head -->
@@ -812,8 +812,12 @@
 
 		<!--end::Page Scripts -->
 
+
+
 		<!--begin::Global App Bundle(used by all pages) -->
 		<script src="<?php echo $this->request->webroot; ?>assets/app/bundle/app.bundle.js" type="text/javascript"></script>
+
+		<script src="<?php echo $this->request->webroot; ?>app.js" type="text/javascript"></script>
 
 		<!--end::Global App Bundle -->
 	</body>
