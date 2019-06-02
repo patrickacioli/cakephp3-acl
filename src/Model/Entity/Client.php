@@ -31,6 +31,7 @@ class Client extends Entity
         'name' => true,
         'phone' => true,
         'email' => true,
+        'cpf' => true,
         'label' => true,
         'created' => true,
         'modifield' => true,

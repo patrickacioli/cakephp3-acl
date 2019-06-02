@@ -1,59 +1,103 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Client[]|\Cake\Collection\CollectionInterface $clients
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Transactions'), ['controller' => 'Transactions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Transaction'), ['controller' => 'Transactions', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="clients index large-9 medium-8 columns content">
-    <h3><?= __('Clients') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<!-- begin:: Content -->
+<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+  <div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title">
+          Produtos
+        </h3>
+      </div>
+      <div class="kt-portlet__head-toolbar">
+        <div class="kt-portlet__head-wrapper">
+          <div class="kt-portlet__head-actions">
+            <div class="dropdown dropdown-inline">
+              <button type="button" class="btn btn-default btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="la la-download"></i> Exportar
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <ul class="kt-nav">
+                  <li class="kt-nav__section kt-nav__section--first">
+                    <span class="kt-nav__section-text">Escolha uma opção</span>
+                  </li>
+                  <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                      <i class="kt-nav__link-icon la la-print"></i>
+                      <span class="kt-nav__link-text">Imprimir</span>
+                    </a>
+                  </li>
+                  <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                      <i class="kt-nav__link-icon la la-copy"></i>
+                      <span class="kt-nav__link-text">Copiar</span>
+                    </a>
+                  </li>
+                  <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                      <i class="kt-nav__link-icon la la-file-excel-o"></i>
+                      <span class="kt-nav__link-text">Excel</span>
+                    </a>
+                  </li>
+                  <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                      <i class="kt-nav__link-icon la la-file-text-o"></i>
+                      <span class="kt-nav__link-text">CSV</span>
+                    </a>
+                  </li>
+                  <li class="kt-nav__item">
+                    <a href="#" class="kt-nav__link">
+                      <i class="kt-nav__link-icon la la-file-pdf-o"></i>
+                      <span class="kt-nav__link-text">PDF</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            &nbsp;
+            <a href="<?php echo $this->request->webroot; ?>clients/add" class="btn btn-brand btn-elevate btn-icon-sm">
+              <i class="la la-plus"></i>
+              Inserir novo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-portlet__body">
+
+      <!--begin: Datatable -->
+      <table class="table table-striped- table-bordered table-hover">
         <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('phone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('label') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modifield') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+          <tr>
+            <th>#</th>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>telefone</th>
+            <th>Email</th>
+            <th>Rótulo</th>
+            <th>Dt. Cadastro</th>
+            <th>Ações</th>
+          </tr>
         </thead>
         <tbody>
-            <?php foreach ($clients as $client): ?>
+          <?php foreach ($query as $client): ?>
             <tr>
-                <td><?= $this->Number->format($client->id) ?></td>
-                <td><?= h($client->name) ?></td>
-                <td><?= h($client->phone) ?></td>
-                <td><?= h($client->email) ?></td>
-                <td><?= h($client->label) ?></td>
-                <td><?= h($client->created) ?></td>
-                <td><?= h($client->modifield) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $client->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $client->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $client->id], ['confirm' => __('Are you sure you want to delete # {0}?', $client->id)]) ?>
-                </td>
+              <td><?php echo $client->id; ?></td>
+              <td><?php echo $client->cpf; ?></td>
+              <td><?php echo $client->name; ?></td>
+              <td><?php echo $client->phone; ?></td>
+              <td><?php echo $client->email; ?></td>
+              <td><?php echo $client->label; ?></td>
+              <td><?php echo $client->created; ?></td>
+              <td>
+                <a href="<?php echo $this->request->webroot; ?>clients/edit/<?php echo $client->id; ?>">
+                  <button type="button" class="btn btn-sm btn-brand"><i class="fa fa-edit"></i></button>
+                </a>
+              </td>
             </tr>
-            <?php endforeach; ?>
+          <?php endforeach; ?>
         </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+      </table>
+
+      <!--end: Datatable -->
     </div>
+  </div>
 </div>

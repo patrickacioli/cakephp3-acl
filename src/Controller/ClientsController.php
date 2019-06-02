@@ -17,12 +17,11 @@ class ClientsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {
-        $clients = $this->paginate($this->Clients);
-
-        $this->set(compact('clients'));
-    }
+     public function index()
+     {
+         $query = $this->Clients->find("all")->limit(50)->order(['Clients.created' =>'DESC']);
+         $this->set("query", $query);
+     }
 
     /**
      * View method
