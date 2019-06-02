@@ -24,7 +24,11 @@
 
           <div class="form-group">
             <label>Unidade de apresentação</label>
-            <?php echo $this->Form->control("un", ["class" => "form-control", "label" => false, "placeholder"=> "Quantidade inicial do produto"]); ?>
+            <?php echo $this->Form->select("un", [
+              "class" => "form-control",
+              "label" => false,
+              "placeholder"=>
+              "Quantidade inicial do produto"]); ?>
           </div>
 
           <div class="form-group">
