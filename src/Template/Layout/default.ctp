@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Painel | Secretaria Municipal de Saúde de Pio IX</title>
-		<meta name="description" content="Page with empty content">
+		<meta name="description" content="Painel administrativo">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!--begin::Fonts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
@@ -19,7 +19,9 @@
 
 		<!--end::Fonts -->
 
-				<!--end::Page Vendors Styles -->
+		<!--begin::Page Vendors Styles(used by this page) -->
+		<link href="<?php echo $this->request->webroot; ?>assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+
 
 		<!--begin:: Global Mandatory Vendors -->
 		<link href="<?php echo $this->request->webroot; ?>assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
@@ -111,9 +113,9 @@
 									<h4 class="kt-menu__section-text">Almoxarifado</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li>
-								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-layers"></i><span class="kt-menu__link-text">Produtos</span></a></li>
-                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">Clientes</span></a></li>
-                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">Transações</span></a></li>
+								<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="<?php echo $this->request->webroot; ?>products/" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-layers"></i><span class="kt-menu__link-text">Produtos</span></a></li>
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="<?php echo $this->request->webroot; ?>clients/" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">Clientes</span></a></li>
+                <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="<?php echo $this->request->webroot; ?>transactions/" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">Transações</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -180,7 +182,7 @@
         									<div class="kt-header__topbar-user">
         										<span class="kt-header__topbar-welcome kt-hidden-mobile">Olá,</span>
         										<span class="kt-header__topbar-username kt-hidden-mobile"><?php echo $this->request->session()->read('Auth.User.username'); ?></span>
-        										<img class="kt-hidden" alt="Pic" src="../assets/media/users/300_25.jpg">
+        										<img class="kt-hidden" alt="Pic" src="<?php echo $this->request->webroot; ?>assets/media/users/300_25.jpg">
 
         										<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
         										<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">
@@ -191,19 +193,18 @@
         								<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 
         									<!--begin: Head -->
-        									<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(../assets/media/misc/bg-1.jpg)">
+        									<div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(<?php echo $this->request->webroot; ?>assets/media/misc/bg-1.jpg)">
         										<div class="kt-user-card__avatar">
-        											<img class="kt-hidden" alt="Pic" src="../assets/media/users/300_25.jpg">
+        											<img class="kt-hidden" alt="Pic" src="<?php echo $this->request->webroot; ?>assets/media/users/300_25.jpg">
 
         											<!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-        											<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
+        											<span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
+																<?php echo mb_strtoupper($this->request->session()->read('Auth.User.username')[0]); ?>
+															</span>
         										</div>
         										<div class="kt-user-card__name">
-        											Sean Stone
-        										</div>
-        										<div class="kt-user-card__badge">
-        											<span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
-        										</div>
+        											<?php echo $this->request->session()->read('Auth.User.username'); ?>
+        										</div>        									
         									</div>
 
         									<!--end: Head -->
@@ -800,6 +801,14 @@
 
 		<!--begin::Page Scripts(used by this page) -->
 		<script src="<?php echo $this->request->webroot; ?>assets/app/custom/general/dashboard.js" type="text/javascript"></script>
+
+		<!--begin::Page Vendors(used by this page) -->
+		<script src="<?php echo $this->request->webroot; ?>assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+
+		<!--end::Page Vendors -->
+
+		<!--begin::Page Scripts(used by this page) -->
+		<script src="<?php echo $this->request->webroot; ?>assets/app/custom/general/crud/datatables/basic/basic.js" type="text/javascript"></script>
 
 		<!--end::Page Scripts -->
 
